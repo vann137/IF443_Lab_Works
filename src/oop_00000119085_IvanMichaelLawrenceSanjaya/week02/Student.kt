@@ -3,7 +3,8 @@ package oop_00000119085_IvanMichaelLawrenceSanjaya.week02
 class Student (
     val name: String,
     val nim: String,
-    var major: String
+    var major: String,
+    var gpa: Double= 0.0 // <--Default Argument
 ) {
     init{
        //Validasi Seederhana: Cek panjang NIM
