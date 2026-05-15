@@ -39,4 +39,13 @@ fun main(){
         println("Peringatan ke Pemilik: ${error.message}")
         println("(Opsional: Berikan chicken jerky secara manual)")
     }
+    /* output
+   === Jadwal Makan 1 ===
+   Caught Error: Kibble tidak cukup! Diminta 80 gr, sisa 50 gr
+   Siklus pengecekan dispenser pagi selesai.
+
+   === Jadwal Makan 2 ===
+   Kibble berhasil dikeluarkan!
+   Makan sore sukses! Sisa stok kibble: 970 gr
+   */
 }
