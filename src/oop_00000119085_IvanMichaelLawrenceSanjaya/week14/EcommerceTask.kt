@@ -1,7 +1,8 @@
 package oop_00000119085_IvanMichaelLawrenceSanjaya.week14
 import java.io.File
+import java.io.FileWriter
 
-class BadOrderProcessor {
+/*class BadOrderProcessor {
     // VIOLATION: Hardcoded File I/O (DIP), Melakukan kalkulasi I/O Notifikasi sekali
     private val file = File("orders.csv")
 
@@ -20,4 +21,31 @@ class BadOrderProcessor {
         // VIOLATION SRP/DIP: Notifikasi terikat kuat dengan sistem order
         println("Email terkirim: Pesanan \$itemName Anda telah dikonfirmasi!")
     }
+}*/
+
+interface OrderRepository {
+    fun saveOrder(itemName: String, finalPrice: Double, customerType: String)
 }
+
+class CsvOrderRepository : OrderRepository {
+    override fun saveOrder(itemName: String, finalPrice: Double, customerType: String) {
+        FileWriter("orders.csv", true).use { writer ->
+            writer.append("\$itemName, \$finalPrice, \$customerType\n")
+        }
+    }
+}
+
+interface NotificationService {
+    fun sendNotification(message: String)
+}
+
+class EmailNotifier : NotificationService {
+    override fun sendNotification(message: String) {
+        println("Email terkirim: \$message")
+    }
+}
+
+class SafeOrderProcessor(
+    private val repo: OrderRepository,
+    private val notifier: NotificationService
+)
